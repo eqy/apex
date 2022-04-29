@@ -6,10 +6,6 @@
 #include <torch/extension.h>
 
 // note (mkozuki): Availability of the header files.
-// These two "torch/csrc/jit/codegen/cuda" headers available if PyTorch is editable installed.
-// PyTorch version: 1.12.0a0+gitc1037d0.
-#include <torch/csrc/jit/codegen/cuda/kernel_cache.h>
-#include <torch/csrc/jit/codegen/cuda/ops/all_ops.h>
 // To make this available in editable install PyTorch, the following is needed
 #if 0
 diff --git a/setup.py b/setup.py
@@ -26,6 +22,10 @@ index d23603bc90..c690136145 100644
                  'include/caffe2/utils/**/*.h',
 #endif
 #include <ATen/native/utils/ParamsHash.h>
+// These two "torch/csrc/jit/codegen/cuda" headers available if PyTorch is editable installed.
+// PyTorch version: 1.12.0a0+gitc1037d0.
+#include <torch/csrc/jit/codegen/cuda/kernel_cache.h>
+#include <torch/csrc/jit/codegen/cuda/ops/all_ops.h>
 
 using namespace torch::jit::fuser::cuda;
 using namespace at::indexing;

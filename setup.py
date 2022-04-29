@@ -337,6 +337,9 @@ if "--cuda_ext" in sys.argv:
             )
         )
 
+if "--nvfuser_in" in sys.argv:
+    sys.argv.remove("--nvfuser_in")
+    raise_if_cuda_home_none("--nvfuser_in")
     ext_modules.append(
        CUDAExtension('instance_norm_nvfuser_cuda',
                      ['csrc/instance_norm_nvfuser.cpp', 'csrc/instance_norm_nvfuser_kernel.cu'],
