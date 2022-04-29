@@ -5,10 +5,27 @@
 
 #include <torch/extension.h>
 
+// note (mkozuki): Availability of the header files.
+// To make this available in editable install PyTorch, the following is needed
+#if 0
+diff --git a/setup.py b/setup.py
+index d23603bc90..c690136145 100644
+--- a/setup.py
++++ b/setup.py
+@@ -983,6 +983,7 @@ if __name__ == '__main__':
+                 'include/ATen/native/hip/*.cuh',
+                 'include/ATen/native/quantized/*.h',
+                 'include/ATen/native/quantized/cpu/*.h',
++                'include/ATen/native/utils/*.h',
+                 'include/ATen/quantized/*.h',
+                 'include/caffe2/utils/*.h',
+                 'include/caffe2/utils/**/*.h',
+#endif
+#include <ATen/native/utils/ParamsHash.h>
+// These two "torch/csrc/jit/codegen/cuda" headers available if PyTorch is editable installed.
+// PyTorch version: 1.12.0a0+gitc1037d0.
 #include <torch/csrc/jit/codegen/cuda/kernel_cache.h>
 #include <torch/csrc/jit/codegen/cuda/ops/all_ops.h>
-
-#include <aten/src/ATen/native/utils/ParamsHash.h>
 
 using namespace torch::jit::fuser::cuda;
 using namespace at::indexing;
