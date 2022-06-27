@@ -123,6 +123,7 @@ def train(model, optim, pipeline_model_parallel_size, async_comm):
     runtime = 0
     # training loop
     for i in range(3):
+        torch.cuda.synchronize()
         since = time.time()
         if torch.distributed.get_rank() == 0:
             print("begin iter", i)
@@ -156,6 +157,7 @@ def train(model, optim, pipeline_model_parallel_size, async_comm):
         optim.step()
         if torch.distributed.get_rank() == 0:
             print("finished iter", i)
+        torch.cuda.synchronize()
         runtime += time.time() - since
     return runtime / 3.0
 
